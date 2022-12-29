@@ -1,0 +1,22 @@
+ 16 lines (16 sloc) 232 Bytes
+[include]
+  path = ~/.gitconfig.local
+[core]
+  excludesfile = ~/.gitignore
+  editor = nvim
+[color]
+  ui = true
+[diff]
+  tool = vimdiff
+  compactionHeuristic = true
+  noprefix = true
+[pull]
+  ff = only
+[init]
+  defaultBranch = main
+[merge]
+  tool = vimdiff
+[mergetool "vimdiff"]
+  path = nvim
+[user]
+  name = Alan Chang
