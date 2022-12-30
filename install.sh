@@ -12,6 +12,7 @@ export DOTFILES_LOCATION;
 # Install dependencies
 ###
 ./bin/dotfiles install zsh
+./bin/dotfiles install bash
 ./bin/dotfiles install starship
 ./bin/dotfiles install tmux
 ./bin/dotfiles install nvim
