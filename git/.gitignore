@@ -17,6 +17,9 @@
 .history
 .ionide
 
+### direnv ###
+.envrc
+
 ### Misc ###
 *.code-workspace
 *.swp

@@ -61,9 +61,9 @@ function install_direnv
 function install_delta
 {
 	if ! command -v delta 2>/dev/null; then
-		wget https://github.com/dandavison/delta/releases/download/0.15.1/git-delta_0.15.1_amd64.deb -O "${TOOLS_DIR}git-delta.deb"
-		dpkg -i "${TOOLS_DIR}git-delta.deb"
-		sudo apt-get install tmux;
+		wget https://github.com/dandavison/delta/releases/download/0.15.1/delta-0.15.1-x86_64-unknown-linux-musl.tar.gz -O "${TOOLS_DIR}git-delta.tar.gz"
+		tar -xzf "${TOOLS_DIR}git-delta.tar.gz" -C "${TOOLS_DIR}" --strip-components=1
+		ln -sf "${TOOLS_DIR}delta" "${BIN_DIR}delta"
 	fi
 }
 
