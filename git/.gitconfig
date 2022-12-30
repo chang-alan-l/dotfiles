@@ -34,4 +34,6 @@
 [mergetool "vimdiff"]
   path = nvim
 [credential]
-  helper = cache --timeout=90000
+  helper = /usr/local/bin/git-credential-manager
+[credential "https://dev.azure.com"]
+  useHttpPath = true

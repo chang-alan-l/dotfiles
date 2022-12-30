@@ -16,6 +16,12 @@ if [ ! -f "${HOME}/.gitconfig.local" ] ; then
   sed -i "s/GITEMAIL/${var_email}/" "${HOME}/.gitconfig.local"
   echo "$var_email added to .gitconfig.local"
 
+  echo "Enter a specific email address for github:";
+  read -r var_gh_email
+  sed -i "s/GITHUB_EMAIL/${var_gh_email}/" "${HOME}/.gitconfig.local"
+  echo "$var_gh_email added to .gitconfig.local"
+
+
 fi
 
 ln -sf "${DOTFILES_LOCATION}/git/.gitconfig" "${HOME}/.gitconfig"
