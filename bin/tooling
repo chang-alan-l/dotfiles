@@ -112,7 +112,7 @@ case "${input_command}" in
   "install")
     package="${1}"
 		install_function="install_${package}"
-		echo "🚀 Installing or fetching binary for: ${package}"
+		echo "⚙ Installing or fetching binary for: ${package}"
 		eval "$install_function"
     echo -e "\n"
     ;;

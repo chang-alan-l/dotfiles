@@ -1,5 +1,9 @@
-#!/usr/bin/env zsh
-
+#!/usr/bin/env sh
 set -e
+
+DATESTAMP=$(date +"%Y%m%d")
+if test -f "${HOME}/.zshrc"; then
+	cp "${HOME}/.zshrc" "${HOME}/.zshrc.${DATESTAMP}.bak"
+fi
 
 ln -sf "${DOTFILES_LOCATION}/zsh/.zshrc" "${HOME}/.zshrc"
