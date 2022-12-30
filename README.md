@@ -6,3 +6,12 @@ Inspired by [https://github.com/benmatselby/dotfiles](https://github.com/benmats
 git clone ...
 ./install.sh
 ```
+
+### Installation of specific tools
+```
+./bin/tooling install ${TOOL_NAME}
+./bin/dotfiles install ${TOOL_NAME}
+```
+
+### Just Install Everything
+Can also use `./bin/tooling install all`

@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+
+set -e
+
+BIN_DIR="${HOME}/bin/"
+TOOLS_DIR="${HOME}/external_tools/"
+mkdir -p "$BIN_DIR"
+mkdir -p "$TOOLS_DIR"
+
+# Install Functions
+function install_git
+{
+	if ! command -v git 2>/dev/null; then
+		sudo apt-get -y install git
+	fi
+}
+
+function install_tmux
+{
+	if ! command -v tmux 2>/dev/null; then
+		wget https://github.com/nelsonenzo/tmux-appimage/releases/download/3.2a/tmux.appimage -O "${TOOLS_DIR}tmux.appimage"
+		chmod u+x "${TOOLS_DIR}tmux.appimage"
+		ln -sf "${TOOLS_DIR}tmux.appimage" "${BIN_DIR}tmux"
+
+		# Set up a nicer tmux config
+		git clone https://github.com/gpakosz/.tmux.git "${TOOLS_DIR}.tmux/"
+		ln -s -f "${TOOLS_DIR}.tmux.conf" "$HOME/.tmux.conf"
+fi
+}
+
+function install_nvim
+{
+	if ! command -v nvim 2>/dev/null; then
+		wget https://github.com/neovim/neovim/releases/download/v0.8.2/nvim.appimage -O "${TOOLS_DIR}nvim.appimage"
+		chmod +x "${TOOLS_DIR}nvim.appimage"
+		ln -sf "${TOOLS_DIR}nvim.appimage" "${BIN_DIR}nvim"
+	fi
+}
+
+function install_zsh
+{
+	if ! command -v zsh 2>/dev/null; then
+		sudo apt-get install zsh
+	fi
+}
+
+function install_starship
+{
+	if ! command -v starship 2>/dev/null; then
+		curl -sS https://starship.rs/install.sh | sh
+	fi
+}
+
+function install_direnv
+{
+	if ! command -v direnv 2>/dev/null; then
+		curl -sfL https://direnv.net/install.sh | bash
+	fi
+}
+
+function install_delta
+{
+	if ! command -v delta 2>/dev/null; then
+		wget https://github.com/dandavison/delta/releases/download/0.15.1/git-delta_0.15.1_amd64.deb -O "${TOOLS_DIR}git-delta.deb"
+		dpkg -i "${TOOLS_DIR}git-delta.deb"
+		sudo apt-get install tmux;
+	fi
+}
+
+function install_fzf
+{
+	if ! command -v fzf 2>/dev/null; then
+		wget https://github.com/junegunn/fzf/releases/download/0.35.1/fzf-0.35.1-linux_amd64.tar.gz -O "${TOOLS_DIR}fzf.tar.gz"
+		tar -xzf "${TOOLS_DIR}fzf.tar.gz" -C "${TOOLS_DIR}" --strip-components=1
+		ln -sf "${TOOLS_DIR}fzf" "${BIN_DIR}fzf"
+	fi
+}
+
+function install_shellcheck {
+	if ! command -v shellcheck 2>/dev/null; then
+		wget https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz -O "${TOOLS_DIR}shellcheck.tar.xz"
+		tar -xJf "${TOOLS_DIR}shellcheck.tar.xz" -C "${TOOLS_DIR}" --strip-components=1
+		ln -sf "${TOOLS_DIR}shellcheck" "${BIN_DIR}shellcheck"
+	fi
+}
+
+
+AVAILABLE_FUNCTIONS=(
+	install_git
+	install_tmux
+	install_nvim
+	install_zsh
+	install_starhip
+	install_direnv
+	install_delta
+	install_fzf
+	install_shellcheck
+)
+
+function install_all
+{
+	for i in "${!AVAILABLE_FUNCTIONS[@]}"; do
+		${AVAILABLE_FUNCTIONS[i]}
+	done
+}
+
+# Accept input commands
+input_command="${1}"
+shift
+
+case "${input_command}" in
+  "install")
+    package="${1}"
+		install_function="install_${package}"
+		echo "🚀 Installing or fetching binary for: ${package}"
+		eval "$install_function"
+    echo -e "\n"
+    ;;
+  *)
+    echo "${input_command} does not exist"
+    exit 1
+    ;;
+esac
+

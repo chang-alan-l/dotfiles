@@ -12,7 +12,9 @@ export DOTFILES_LOCATION;
 # Install dependencies
 ###
 ./bin/dotfiles install zsh
-./bin/dotfiles install fish
+# This is probably better manually installed, since we will default to zsh
+# typically
+# ./bin/dotfiles install fish
 ./bin/dotfiles install git
 ./bin/dotfiles install github
 ./bin/dotfiles install starship

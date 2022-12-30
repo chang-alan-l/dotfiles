@@ -638,10 +638,11 @@ detect_files = []
 detect_folders = ['.terraform']
 
 [time]
+disabled = true
 format = 'at [$time]($style) '
 style = 'yellow'
 use_12hr = false
-disabled = false
+time_format = '%R'
 utc_time_offset = 'local'
 time_range = '-'
 
