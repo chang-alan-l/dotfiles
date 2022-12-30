@@ -15,7 +15,8 @@ export DOTFILES_LOCATION;
 # This is probably better manually installed, since we will default to zsh
 # typically
 # ./bin/dotfiles install fish
-./bin/dotfiles install git
+# Requires input, harder to do inside container
+# ./bin/dotfiles install git
 ./bin/dotfiles install github
 ./bin/dotfiles install starship
 ./bin/dotfiles install tmux
