@@ -7,3 +7,4 @@ if test -f "${HOME}/.zshrc"; then
 fi
 
 ln -sf "${DOTFILES_LOCATION}/zsh/.zshrc" "${HOME}/.zshrc"
+ln -sf "${DOTFILES_LOCATION}/zsh/.zsh_plugins.txt" "${HOME}/.zsh_plugins.txt"

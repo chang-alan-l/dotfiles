@@ -1,23 +1,9 @@
-# antigen sourcing here
-source ~/external_tools/antigen.zsh
+# antidote
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+antidote load
 
-## Antigen init
-antigen use oh-my-zsh
-
-# Bundles from the default repo (robbyrussell's oh-my-zsh)
-antigen bundle git
-antigen bundle docker
-antigen bundle pip
-antigen bundle command-not-found
-antigen bundle tmux
-
-# Syntax highlighting + autocompletion
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-history-substring-search
-
-antigen apply
-## End of Antigen section
+# local binaries
+export PATH="$HOME/.local/bin:$PATH"
 
 # Starship theme
 eval "$(starship init zsh)"
@@ -25,10 +11,20 @@ eval "$(starship init zsh)"
 # direnv hook
 eval "$(direnv hook zsh)"
 
+# a few common aliases
+alias l='ls -lFh'     #size,show type,human readable
+alias la='ls -lAFh'   #long list,show almost all,show type,human readable
+alias lr='ls -tRFh'   #sorted by date,recursive,show type,human readable
+alias lt='ls -ltFh'   #long list,sorted by date,show type,human readable
+alias ll='ls -l'      #long list
+alias ldot='ls -ld .*'
+alias lS='ls -1FSsh'
+alias lart='ls -1Fcart'
+alias lrt='ls -1Fcrt'
+alias lsr='ls -lARFh' #Recursive list of files and directories
+alias lsn='ls -1'     #A column contains name of files and directories
+
 # git aliases
 alias gits="git status"
 alias gitsu="git status -uno"
-
-# local binaries
-export PATH="$HOME/bin:$PATH"
 

@@ -8,7 +8,10 @@ git clone ...
 ```
 
 ### Installation of specific tools
+From the repo directory top level
+
 ```
+export $DOTFILES_LOCATION=$(pwd)
 ./bin/tooling install ${TOOL_NAME}
 ./bin/dotfiles install ${TOOL_NAME}
 ```
